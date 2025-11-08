@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='indexPage.css') }}">
+</head>
+   <body>
+      <form action = "/login" method = "post">
+         <p>
+            <label class="label">Enter your Name:<input type = "text"  id="name" name = "name" /></label>
+            <input class="button" type = "submit" value = "Submit" />
+         </p>
+      </form>
+   </body>
+</html>
