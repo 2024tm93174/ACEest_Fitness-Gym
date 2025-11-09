@@ -1,15 +1,17 @@
-# routes.py
-from flask import Blueprint, jsonify, request
+from flask import request, redirect, url_for, jsonify
 
-bp = Blueprint("bp", __name__)
+def init_routes(app):
+    @app.route("/login", methods=["POST"])
+    def api_login():
+        data = request.get_json()
+        username = data.get("username")
+        password = data.get("password")
 
-@bp.route("/ping")
-def ping():
-    return jsonify({"message": "pong"}), 200
+        if username == "admin" and password == "secret":
+            return {"token": "fake-jwt-token"}, 200
+        else:
+            return {"error": "Invalid credentials"}, 401
 
-@bp.route("/echo", methods=["POST"])
-def echo():
-    data = request.json
-    if not data or "msg" not in data:
-        return jsonify({"error": "Missing field 'msg'"}), 400
-    return jsonify({"echo": data["msg"]}), 201
+    @app.route("/success/<name>")
+    def success(name):
+        return f"welcome {name}"
