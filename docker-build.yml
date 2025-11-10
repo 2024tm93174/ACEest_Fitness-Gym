@@ -1,4 +1,4 @@
-name: Build Docker Image V 1.2.3
+name: Build Docker Image V 1.2.0
 
 on:
   push:
