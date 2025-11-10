@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aceest-ab-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-by-header: "X-AB-Test"
+    nginx.ingress.kubernetes.io/canary-by-header-value: "b"
+spec:
+  rules:
+    - host: aceest.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aceest-a
+                port:
+                  number: 5000
