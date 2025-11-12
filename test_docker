@@ -1,1 +1,1 @@
-test docker pipeline tcp
+test docker pipeline tcp -redeploy
